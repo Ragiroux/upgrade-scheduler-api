@@ -28,4 +28,4 @@ Here is the algorithm:
 
 ## API rest documentation
 
-The documentation is available here
+The documentation is available [here](https://ragiroux.github.io/upgrade-scheduler-api/)
