@@ -21,7 +21,9 @@ public class UpgradeService {
         Upgrade upgrade = Upgrade.builder()
                 .upgradeName(upgradePayload.getUpgradeName())
                 .version(upgradePayload.getVersion())
-                .rolloutStrategy(upgradePayload.getRolloutStrategy())
+                .summary(upgradePayload.getSummary())
+                .patchUri(upgradePayload.getPatchUri())
+                .patchType(upgradePayload.getPatchType().name())
                 .build();
 
         return Optional.of(upgradeRepository.save(upgrade));

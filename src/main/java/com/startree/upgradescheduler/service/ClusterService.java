@@ -3,8 +3,6 @@ package com.startree.upgradescheduler.service;
 import com.startree.upgradescheduler.domain.ClusterPayload;
 import com.startree.upgradescheduler.entity.Cluster;
 import com.startree.upgradescheduler.repository.ClusterRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

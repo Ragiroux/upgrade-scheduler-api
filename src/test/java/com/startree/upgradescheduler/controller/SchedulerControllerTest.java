@@ -38,10 +38,10 @@ class SchedulerControllerTest {
 
     @Test
     public void getState() throws Exception {
-        this.mockMvc.perform(get("/v1/upgrade/cluster/{id}", 1))
+        this.mockMvc.perform(get("/v1/scheduler/state")
+                .queryParam("clusterId", "1"))
                 .andExpect(status().isOk())
                 .andDo(document("get-state",
-                        pathParameters(parameterWithName("id").description("The id of pinot cluster")),
                         responseFields(
                                 fieldWithPath("clusterId").description("The pinot cluster id"),
                                 fieldWithPath("updateAt").description("Time at which the update is scheduled"),

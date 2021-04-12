@@ -67,7 +67,7 @@ class ClusterPayloadControllerTest {
                 .andExpect(jsonPath("$.version").value("1.0.0"))
                 .andExpect(jsonPath("$.status").value("COMPLETED"));
 
-        Optional<com.startree.upgradescheduler.entity.Cluster> cluster = clusterRepository.findByClusterId(1L);
+        Optional<Cluster> cluster = clusterRepository.findByClusterId(1L);
 
         assertNotNull(cluster.get());
     }
@@ -93,7 +93,7 @@ class ClusterPayloadControllerTest {
                 .andExpect(jsonPath("$.version").value("1.0.1"))
                 .andExpect(jsonPath("$.status").value("UPGRADING"));
 
-        Optional<com.startree.upgradescheduler.entity.Cluster> cluster = clusterRepository.findByClusterId(1337L);
+        Optional<Cluster> cluster = clusterRepository.findByClusterId(1337L);
         assertNotNull(cluster.get());
         assertEquals("1.0.1", cluster.get().getVersion());
     }

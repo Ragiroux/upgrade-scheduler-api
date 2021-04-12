@@ -5,7 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -21,10 +24,10 @@ public class Upgrade {
     private Long id;
 
     private String upgradeName;
-
     private String version;
-
-    private String rolloutStrategy;
+    private String summary;
+    private String patchUri;
+    private String patchType;
 
     @Override
     public boolean equals(Object o) {

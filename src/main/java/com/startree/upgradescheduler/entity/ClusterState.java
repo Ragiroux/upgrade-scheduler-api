@@ -22,6 +22,7 @@ public class ClusterState {
     @GeneratedValue
     private Long id;
     private Long currentUpgradeId;
+    private String rolloutStrategy;
 
     @Override
     public boolean equals(Object o) {

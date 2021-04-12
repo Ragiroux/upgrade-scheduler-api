@@ -5,8 +5,10 @@ DROP TABLE IF EXISTS cluster_state;
 CREATE TABLE upgrade (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   upgrade_name VARCHAR(250) NOT NULL,
+  summary VARCHAR(250) NULL,
   version VARCHAR(250) NOT NULL,
-  rollout_strategy VARCHAR(250) NOT NULL
+  patch_uri VARCHAR(250) NULL,
+  patch_type VARCHAR(250) NOT NULL
 );
 
 CREATE TABLE cluster (
@@ -17,6 +19,8 @@ CREATE TABLE cluster (
 );
 
 CREATE TABLE cluster_state (
-  current_upgrade_id INT
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  current_upgrade_id INT,
+  rollout_strategy VARCHAR(250) NOT NULL
 );
 
