@@ -17,10 +17,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 
-import static com.startree.upgradescheduler.entity.Status.*;
+import static com.startree.upgradescheduler.entity.Status.COMPLETED;
+import static com.startree.upgradescheduler.entity.Status.UPGRADING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;

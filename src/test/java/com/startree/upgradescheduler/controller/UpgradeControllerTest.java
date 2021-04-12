@@ -1,10 +1,7 @@
 package com.startree.upgradescheduler.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.startree.upgradescheduler.domain.ClusterPayload;
-import com.startree.upgradescheduler.domain.PatchType;
 import com.startree.upgradescheduler.domain.UpgradePayload;
-import com.startree.upgradescheduler.entity.Cluster;
 import com.startree.upgradescheduler.entity.Upgrade;
 import com.startree.upgradescheduler.repository.UpgradeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,17 +16,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import static com.startree.upgradescheduler.domain.PatchType.FEATURE;
-import static com.startree.upgradescheduler.entity.Status.COMPLETED;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
