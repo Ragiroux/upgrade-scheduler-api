@@ -1,0 +1,58 @@
+= UPGRADE-SCHEDULER API
+ragiroux;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[overview]]
+= Overview
+
+[[resources-index-access]]
+=== Get pinot clusterPayload state
+
+Obtain pinot clusterPayload state
+
+==== Request structure
+include::{snippets}/get-state/http-request.adoc[]
+
+==== CURL request
+include::{snippets}/get-state/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/get-state/http-response.adoc[]
+include::{snippets}/get-state/response-fields.adoc[]
+
+
+=== POST managed pinot clusterPayload information
+
+Register clusterPayload to upgradePayload scheduler
+
+==== Request structure
+include::{snippets}/post-clusterPayload/http-request.adoc[]
+
+==== CURL request
+include::{snippets}/post-clusterPayload/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/post-clusterPayload/http-response.adoc[]
+include::{snippets}/post-clusterPayload/response-fields.adoc[]
+
+=== PUT managed pinot clusterPayload information
+
+Update clusterPayload information in upgradePayload scheduler
+
+==== Request structure
+include::{snippets}/put-clusterPayload/http-request.adoc[]
+
+==== CURL request
+include::{snippets}/put-clusterPayload/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/put-clusterPayload/http-response.adoc[]
+include::{snippets}/put-clusterPayload/response-fields.adoc[]
