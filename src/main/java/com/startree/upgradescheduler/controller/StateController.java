@@ -25,13 +25,13 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RestController
 @RequestMapping("/v1/scheduler/state")
 @Slf4j
-public class SchedulerController {
+public class StateController {
 
     private ClusterStateService clusterStateService;
     private ClusterService clusterService;
     private UpgradeService upgradeService;
 
-    public SchedulerController(ClusterStateService clusterStateService, ClusterService clusterService, UpgradeService upgradeService) {
+    public StateController(ClusterStateService clusterStateService, ClusterService clusterService, UpgradeService upgradeService) {
         this.clusterStateService = clusterStateService;
         this.clusterService = clusterService;
         this.upgradeService = upgradeService;

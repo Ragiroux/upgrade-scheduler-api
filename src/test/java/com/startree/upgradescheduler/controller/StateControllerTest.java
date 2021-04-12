@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @SpringBootTest
-class SchedulerControllerTest {
+class StateControllerTest {
 
     private MockMvc mockMvc;
 

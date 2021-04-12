@@ -13,7 +13,7 @@ ragiroux;
 [[resources-index-access]]
 === Get pinot cluster state
 
-Obtain pinot cluster state
+Get the desired state for a cluster. If the version of the cluster is less up to date than the version of the orchestrator then the canary release algorithm will be triggered to rollout the new version to this cluster
 
 ==== Request structure
 include::{snippets}/get-state/http-request.adoc[]
@@ -27,9 +27,9 @@ include::{snippets}/get-state/http-response.adoc[]
 include::{snippets}/get-state/response-fields.adoc[]
 
 
-=== POST managed pinot clusterPayload information
+=== POST add pinot cluster to the scheduler
 
-Register cluster to upgrade scheduler
+Register cluster to scheduler
 
 ==== Request structure
 include::{snippets}/post-cluster/http-request.adoc[]
@@ -42,9 +42,7 @@ include::{snippets}/post-cluster/curl-request.adoc[]
 include::{snippets}/post-cluster/http-response.adoc[]
 include::{snippets}/post-cluster/response-fields.adoc[]
 
-=== PUT managed pinot clusterPayload information
-
-Update cluster information in upgrade scheduler
+=== PUT update pinot cluster information
 
 ==== Request structure
 include::{snippets}/put-cluster/http-request.adoc[]
@@ -58,7 +56,7 @@ include::{snippets}/put-cluster/http-response.adoc[]
 include::{snippets}/put-cluster/response-fields.adoc[]
 
 
-=== POST new upgade pinot information
+=== POST add a new upgrade
 
 Add a new patch in the upgrade scheduler
 
@@ -74,9 +72,9 @@ include::{snippets}/post-upgrade/http-response.adoc[]
 include::{snippets}/post-upgrade/response-fields.adoc[]
 
 
-=== POST cluster state
+=== POST add a new cluster state
 
-Binds an upgrade with a rollout strategy
+Link together an upgrade and a deployment strategy
 
 ==== Request structure
 include::{snippets}/post-cluster-state/http-request.adoc[]

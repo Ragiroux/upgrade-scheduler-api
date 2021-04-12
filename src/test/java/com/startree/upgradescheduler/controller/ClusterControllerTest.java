@@ -58,7 +58,7 @@ class ClusterControllerTest {
 
         ClusterPayload c = new ClusterPayload(clusterId, "1.0.0", COMPLETED);
 
-        this.mockMvc.perform(post("/v1/upgrade/clusters")
+        this.mockMvc.perform(post("/v1/clusters")
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(new ObjectMapper().writeValueAsString(c)))
                 .andExpect(status().isCreated())
@@ -84,7 +84,7 @@ class ClusterControllerTest {
         clusterRepository.save(Cluster.builder().clusterId(clusterId).version("1.0.0").status("COMPLETED").build());
 
         ClusterPayload updatedClusterPayload = new ClusterPayload(clusterId, "1.0.1", UPGRADING);
-        this.mockMvc.perform(put("/v1/upgrade/clusters/{clusterId}", clusterId)
+        this.mockMvc.perform(put("/v1/clusters/{clusterId}", clusterId)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(new ObjectMapper().writeValueAsString(updatedClusterPayload)))
                 .andExpect(status().isOk())

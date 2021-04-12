@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping("/v1/upgrade/clusters")
+@RequestMapping("/v1/clusters")
 @Slf4j
 public class ClusterController {
 

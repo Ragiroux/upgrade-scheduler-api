@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.startree</groupId>
-	<artifactId>upgradePayload-scheduler</artifactId>
+	<artifactId>upgrade-scheduler</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>upgradePayload-scheduler</name>
-	<description>Upgrade scheduler for Pinot clusterPayload</description>
+	<name>upgrade-scheduler</name>
+	<description>Upgrade scheduler for Pinot cluster</description>
 
 	<properties>
 		<java.version>15</java.version>

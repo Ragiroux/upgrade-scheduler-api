@@ -179,7 +179,7 @@ public class RolloutIntegrationTest {
             clusterIds.add(clusterId);
             ClusterPayload c = new ClusterPayload(clusterId, "1.0.0", COMPLETED);
 
-            this.mockMvc.perform(post("/v1/upgrade/clusters")
+            this.mockMvc.perform(post("/v1/clusters")
                     .contentType(APPLICATION_JSON_VALUE)
                     .content(new ObjectMapper().writeValueAsString(c)))
                     .andExpect(status().isCreated());
