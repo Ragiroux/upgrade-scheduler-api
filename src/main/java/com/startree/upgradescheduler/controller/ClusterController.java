@@ -39,13 +39,9 @@ public class ClusterController {
      * @return cluster
      */
     @PutMapping("/{clusterId}")
-    public ResponseEntity<ClusterPayload> updateClusterInformation(@PathVariable("clusterId") Long clusterId, @RequestBody ClusterPayload clusterPayload) {
-
-        Optional<Cluster> updatedCluster = clusterService.updateClusterInformation(clusterId, clusterPayload);
-
-        return updatedCluster
+    public ResponseEntity<ClusterPayload> updateClusterInformation(@PathVariable("clusterId") String clusterId, @RequestBody ClusterPayload clusterPayload) {
+        return  clusterService.updateClusterInformation(clusterId, clusterPayload)
                 .map(c -> ResponseEntity.ok(clusterPayload))
                 .orElse(ResponseEntity.notFound().build());
-
     }
 }

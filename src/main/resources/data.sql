@@ -13,7 +13,7 @@ CREATE TABLE upgrade (
 
 CREATE TABLE cluster (
    id INT AUTO_INCREMENT  PRIMARY KEY,
-   cluster_id INT NOT NULL,
+   cluster_id VARCHAR(250) NOT NULL,
    version VARCHAR(250) NOT NULL,
    status VARCHAR(250) NOT NULL
 );

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClusterPayload {
-    private Long clusterId;
+    private String clusterId;
     private String version;
     private Status status;
 }

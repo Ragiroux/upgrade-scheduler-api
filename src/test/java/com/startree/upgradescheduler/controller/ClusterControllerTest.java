@@ -18,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
 import static com.startree.upgradescheduler.entity.Status.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,7 +54,7 @@ class ClusterControllerTest {
     @Test
     void registerClusterToScheduler() throws Exception {
 
-        long clusterId = new Random().nextInt(1000);
+        String clusterId = UUID.randomUUID().toString();
 
         ClusterPayload c = new ClusterPayload(clusterId, "1.0.0", COMPLETED);
 
@@ -78,7 +79,7 @@ class ClusterControllerTest {
     @Test
     void updateClusterInformation() throws Exception {
 
-        long clusterId = new Random().nextInt(1000);
+        String clusterId = UUID.randomUUID().toString();
 
         clusterRepository.save(Cluster.builder().clusterId(clusterId).version("1.0.0").status("COMPLETED").build());
 

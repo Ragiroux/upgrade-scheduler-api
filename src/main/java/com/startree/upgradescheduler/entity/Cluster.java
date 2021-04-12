@@ -23,7 +23,7 @@ public class Cluster {
     @GeneratedValue
     private Long id;
 
-    private Long clusterId;
+    private String clusterId;
 
     private String version;
 

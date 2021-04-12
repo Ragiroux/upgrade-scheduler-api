@@ -36,7 +36,7 @@ public class SchedulerController {
     }
 
     @GetMapping()
-    public ResponseEntity<State> getState(@RequestParam("clusterId") Long clusterId) {
+    public ResponseEntity<State> getState(@RequestParam("clusterId") String clusterId) {
 
         Optional<Cluster> cluster = clusterService.findCluster(clusterId);
 
@@ -52,7 +52,7 @@ public class SchedulerController {
                     //should update managed pinot cluster
                     if (upgradeVersion.compareTo(clusterVersion) > 0) {
                         Rollout rollout = RolloutStrategy.valueOf(desiredState.get().getRolloutStrategy()).getRollout();
-                        boolean shouldUpgrade = rollout.shouldRollout(desiredState.get().getRolloutParameter(), cluster.get().getClusterId().toString());
+                        boolean shouldUpgrade = rollout.shouldRollout(desiredState.get().getRolloutParameter(), cluster.get().getId().toString());
                         if (shouldUpgrade) {
                             return ResponseEntity.ok(new State(
                                     cluster.get().getClusterId(),

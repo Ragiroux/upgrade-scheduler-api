@@ -16,6 +16,10 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import static com.startree.upgradescheduler.domain.PatchType.FEATURE;
 import static com.startree.upgradescheduler.entity.Status.COMPLETED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -42,9 +46,11 @@ public class RolloutIntegrationTest {
     public void testRoll_two_percentage() throws Exception {
 
         //register 10 managed clusters on version 1.0.0
+        List<String> clusterIds = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
-
-            ClusterPayload c = new ClusterPayload((long) i, "1.0.0", COMPLETED);
+            String clusterId = UUID.randomUUID().toString();
+            clusterIds.add(clusterId);
+            ClusterPayload c = new ClusterPayload(clusterId, "1.0.0", COMPLETED);
 
             this.mockMvc.perform(post("/v1/upgrade/clusters")
                     .contentType(APPLICATION_JSON_VALUE)
@@ -69,17 +75,17 @@ public class RolloutIntegrationTest {
                 .andExpect(status().isCreated());
 
 
-        //Get the new desired state; since the rollout strategy is based on clusterID and percentage
+        //Get the new desired state; since the rollout strategy is based on cluster database generated ID and percentage
         //only the first 2 should get a new update
-        for (int i = 1; i <= 10; i++) {
-            if ( i <= 2) {
+        for ( int i = 0; i < clusterIds.size(); i++ ) {
+            if ( i < 2) {
                 this.mockMvc.perform(get("/v1/scheduler/state")
-                        .queryParam("clusterId", "" + i))
+                        .queryParam("clusterId", "" + clusterIds.get(i)))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$.upgrade.version").value("1.3.3.7"));
             } else {
                 this.mockMvc.perform(get("/v1/scheduler/state")
-                        .queryParam("clusterId", "" + i))
+                        .queryParam("clusterId", "" + clusterIds.get(i)))
                         .andExpect(status().isNotFound());
             }
         }

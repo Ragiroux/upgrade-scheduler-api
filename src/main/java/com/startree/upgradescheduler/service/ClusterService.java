@@ -16,11 +16,11 @@ public class ClusterService {
         this.clusterRepository = clusterRepository;
     }
 
-    public Optional<Cluster> findCluster(Long clusterId) {
+    public Optional<Cluster> findCluster(String clusterId) {
         return clusterRepository.findByClusterId(clusterId);
     }
 
-    public Optional<Cluster> updateClusterInformation(Long clusterId, ClusterPayload clusterPayload) {
+    public Optional<Cluster> updateClusterInformation(String clusterId, ClusterPayload clusterPayload) {
         Optional<Cluster> cluster = findCluster(clusterId);
 
         if (cluster.isPresent()) {

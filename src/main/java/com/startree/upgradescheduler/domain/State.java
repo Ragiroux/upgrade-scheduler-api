@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class State {
-    private long clusterId;
+    private String clusterId;
     private LocalDateTime updateAt;
     private UpgradePayload upgrade;
     private LocalDateTime nextCallBack;

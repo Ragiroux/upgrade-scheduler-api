@@ -23,6 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -62,7 +63,7 @@ class SchedulerControllerTest {
     @Test
     public void getState() throws Exception {
 
-        long clusterId = new Random().nextInt(50);
+        String clusterId = UUID.randomUUID().toString();
 
         //add a managed cluster to the upgrade-scheduler
         clusterRepository.save(Cluster.builder().clusterId(clusterId).version("1.0.0").status("COMPLETED").build());
@@ -73,7 +74,7 @@ class SchedulerControllerTest {
                 .patchType("FEATURE")
                 .build());
         //add a rollout strategy to the upgrade
-        clusterStateRepository.save(ClusterState.builder().rolloutStrategy("PERCENTAGE").rolloutParameter("50").currentUpgradeId(upgradeSaved.getId()).build());
+        clusterStateRepository.save(ClusterState.builder().rolloutStrategy("PERCENTAGE").rolloutParameter("20").currentUpgradeId(upgradeSaved.getId()).build());
 
         this.mockMvc.perform(get("/v1/scheduler/state")
                 .queryParam("clusterId", "" + clusterId))
