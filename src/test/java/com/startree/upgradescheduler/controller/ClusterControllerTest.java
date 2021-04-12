@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @SpringBootTest
-class ClusterPayloadControllerTest {
+class ClusterControllerTest {
 
     private MockMvc mockMvc;
 

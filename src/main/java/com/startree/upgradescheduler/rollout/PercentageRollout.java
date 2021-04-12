@@ -13,6 +13,6 @@ public class PercentageRollout implements Rollout {
     public boolean shouldRollout(String condition, String value) {
         int percentage = Integer.parseInt(condition);
         long v = Long.parseLong(value);
-        return (v % 100) < percentage;
+        return (v % 100) <= percentage;
     }
 }
