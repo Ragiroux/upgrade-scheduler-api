@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "CLUSTER")
+@Table(name = "CLUSTER_STATE")
 @Data
 @Builder
 @AllArgsConstructor

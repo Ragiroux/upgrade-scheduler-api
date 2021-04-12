@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ClusterStatePayload {
     private Long currentUpgradeId;
+    private String rolloutStrategy;
 }

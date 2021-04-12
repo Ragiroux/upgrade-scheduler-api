@@ -28,4 +28,12 @@ public class UpgradeService {
 
         return Optional.of(upgradeRepository.save(upgrade));
     }
+
+    public Optional<Upgrade> getUpgradeFromVersion(String version) {
+        return upgradeRepository.findByVersion(version);
+    }
+
+    public Optional<Upgrade> getUpgradeWithId(Long id) {
+        return upgradeRepository.findById(id);
+    }
 }

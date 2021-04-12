@@ -23,6 +23,11 @@ public class UpgradeController {
         this.upgradeService = upgradeService;
     }
 
+    /**
+     * Add a new patch to the scheduler
+     * @param upgradePayload patch metadata
+     * @return saved patch
+     */
     @PostMapping()
     public ResponseEntity<UpgradePayload> addNewUpgrade(@RequestBody UpgradePayload upgradePayload) {
         Optional<Upgrade> upgrade = upgradeService.saveNewUpgrade(upgradePayload);

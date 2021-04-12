@@ -1,4 +1,4 @@
-package com.startree.upgradescheduler.entity;
+package com.startree.upgradescheduler.rollout;
 
 public enum RolloutStrategy {
     PERCENTAGE,
