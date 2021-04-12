@@ -11,6 +11,8 @@ import com.startree.upgradescheduler.service.UpgradeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.module.ModuleDescriptor;
+import java.lang.module.ModuleDescriptor.Version;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -46,11 +48,12 @@ public class SchedulerController {
             if ( desiredState.isPresent()) {
                 Optional<Upgrade> upgrade = upgradeService.getUpgradeWithId(desiredState.get().getCurrentUpgradeId());
                 if (upgrade.isPresent()) {
-                    String upgradeVersion = upgrade.get().getVersion();
-                    String clusterVersion = cluster.get().getVersion();
+
+                    Version upgradeVersion = Version.parse(upgrade.get().getVersion());
+                    Version clusterVersion = Version.parse(cluster.get().getVersion());
 
                     //should update managed pinot cluster
-                    if (versionToNumber(upgradeVersion) > versionToNumber(clusterVersion)) {
+                    if (upgradeVersion.compareTo(clusterVersion) > 0) {
                         String rolloutStrategy = desiredState.get().getRolloutStrategy();
                     }
                 }
@@ -73,9 +76,5 @@ public class SchedulerController {
                 .flatMap(u -> clusterStateService.addNewState(u.getId(), clusterStatePayload))
                 .map(cs -> ResponseEntity.status(CREATED).body(new ClusterStatePayload(cs.getCurrentUpgradeId(), cs.getRolloutStrategy())))
                 .orElse(ResponseEntity.badRequest().build());
-    }
-
-    private int versionToNumber(String version) {
-        return Integer.parseInt(version.replace(".", ""));
     }
 }
