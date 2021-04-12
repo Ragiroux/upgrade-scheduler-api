@@ -12,7 +12,7 @@ public class PercentageRollout implements Rollout {
     @Override
     public boolean shouldRollout(String condition, String value) {
         int percentage = Integer.parseInt(condition);
-        long v = Long.parseLong(value);
-        return (v % 100) <= percentage;
+        long clusterId = Long.parseLong(value);
+        return (clusterId % 100) <= percentage;
     }
 }
