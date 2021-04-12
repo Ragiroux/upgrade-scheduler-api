@@ -1,13 +1,18 @@
 package com.startree.upgradescheduler.rollout;
 
-import com.startree.upgradescheduler.service.ClusterService;
+public class PercentageRollout implements Rollout {
 
-public class PercentageRollout extends Rollout {
-
-    private ClusterService clusterService;
-
+    /**
+     * Percentage rollout strategy
+     * based on percentage and clusterId
+     * @param condition percentage
+     * @param value clusterId
+     * @return true if it should upgrade, false it stays on the same version
+     */
     @Override
-    boolean shouldRollout() {
-        return false;
+    public boolean shouldRollout(String condition, String value) {
+        int percentage = Integer.parseInt(condition);
+        long v = Long.parseLong(value);
+        return (v % 100) < percentage;
     }
 }

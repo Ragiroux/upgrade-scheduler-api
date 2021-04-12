@@ -20,7 +20,8 @@ public class ClusterStateService {
         return Optional.of(clusterStateRepository.save(
                 ClusterState.builder()
                         .currentUpgradeId(upgradeId)
-                        .rolloutStrategy(clusterStatePayload.getRolloutStrategy())
+                        .rolloutStrategy(clusterStatePayload.getRolloutStrategy().name())
+                        .rolloutParameter(clusterStatePayload.getRolloutParameter())
                         .build()));
     }
 

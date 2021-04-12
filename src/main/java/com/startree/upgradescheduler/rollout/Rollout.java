@@ -1,5 +1,5 @@
 package com.startree.upgradescheduler.rollout;
 
-abstract class Rollout {
-    abstract boolean shouldRollout();
+public interface Rollout {
+    boolean shouldRollout(String condition, String value);
 }

@@ -1,5 +1,6 @@
 package com.startree.upgradescheduler.domain;
 
+import com.startree.upgradescheduler.rollout.RolloutStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClusterStatePayload {
-    private Long currentUpgradeId;
-    private String rolloutStrategy;
+    private RolloutStrategy rolloutStrategy;
+    private String rolloutParameter;
+    private String version;
 }

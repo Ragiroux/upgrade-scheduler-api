@@ -11,7 +11,7 @@ ragiroux;
 = Overview
 
 [[resources-index-access]]
-=== Get pinot clusterPayload state
+=== Get pinot cluster state
 
 Obtain pinot cluster state
 
@@ -72,3 +72,19 @@ include::{snippets}/post-upgrade/curl-request.adoc[]
 
 include::{snippets}/post-upgrade/http-response.adoc[]
 include::{snippets}/post-upgrade/response-fields.adoc[]
+
+
+=== POST cluster state
+
+Binds an upgrade with a rollout strategy
+
+==== Request structure
+include::{snippets}/post-cluster-state/http-request.adoc[]
+
+==== CURL request
+include::{snippets}/post-cluster-state/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/post-cluster-state/http-response.adoc[]
+include::{snippets}/post-cluster-state/response-fields.adoc[]

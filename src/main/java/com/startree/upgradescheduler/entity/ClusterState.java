@@ -23,6 +23,7 @@ public class ClusterState {
     private Long id;
     private Long currentUpgradeId;
     private String rolloutStrategy;
+    private String rolloutParameter;
 
     @Override
     public boolean equals(Object o) {

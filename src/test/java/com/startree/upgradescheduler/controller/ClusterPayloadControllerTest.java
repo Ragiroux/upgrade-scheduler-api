@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Optional;
+import java.util.Random;
 
 import static com.startree.upgradescheduler.entity.Status.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -52,7 +53,9 @@ class ClusterPayloadControllerTest {
     @Test
     void registerClusterToScheduler() throws Exception {
 
-        ClusterPayload c = new ClusterPayload(1L, "1.0.0", COMPLETED);
+        long clusterId = new Random().nextInt(1000);
+
+        ClusterPayload c = new ClusterPayload(clusterId, "1.0.0", COMPLETED);
 
         this.mockMvc.perform(post("/v1/upgrade/clusters")
                 .contentType(APPLICATION_JSON_VALUE)
@@ -63,23 +66,24 @@ class ClusterPayloadControllerTest {
                                 fieldWithPath("clusterId").description("The pinot cluster id"),
                                 fieldWithPath("version").description("Current managed cluster version"),
                                 fieldWithPath("status").description("current managed cluster status"))))
-                .andExpect(jsonPath("$.clusterId").value(1))
+                .andExpect(jsonPath("$.clusterId").value(clusterId))
                 .andExpect(jsonPath("$.version").value("1.0.0"))
                 .andExpect(jsonPath("$.status").value("COMPLETED"));
 
-        Optional<Cluster> cluster = clusterRepository.findByClusterId(1L);
+        Optional<Cluster> cluster = clusterRepository.findByClusterId(clusterId);
 
         assertNotNull(cluster.get());
     }
 
     @Test
     void updateClusterInformation() throws Exception {
-        //GIVEN
-        clusterRepository.save(Cluster.builder().clusterId(1337L).version("1.0.0").status("COMPLETED").build());
 
-        //WHEN
-        ClusterPayload updatedClusterPayload = new ClusterPayload(1337L, "1.0.1", UPGRADING);
-        this.mockMvc.perform(put("/v1/upgrade/clusters/{clusterId}", 1337L)
+        long clusterId = new Random().nextInt(1000);
+
+        clusterRepository.save(Cluster.builder().clusterId(clusterId).version("1.0.0").status("COMPLETED").build());
+
+        ClusterPayload updatedClusterPayload = new ClusterPayload(clusterId, "1.0.1", UPGRADING);
+        this.mockMvc.perform(put("/v1/upgrade/clusters/{clusterId}", clusterId)
                 .contentType(APPLICATION_JSON_VALUE)
                 .content(new ObjectMapper().writeValueAsString(updatedClusterPayload)))
                 .andExpect(status().isOk())
@@ -89,11 +93,11 @@ class ClusterPayloadControllerTest {
                                 fieldWithPath("version").description("Current managed cluster version"),
                                 fieldWithPath("status").description("current managed cluster status"))))
                 //THEN
-                .andExpect(jsonPath("$.clusterId").value(1337))
+                .andExpect(jsonPath("$.clusterId").value(clusterId))
                 .andExpect(jsonPath("$.version").value("1.0.1"))
                 .andExpect(jsonPath("$.status").value("UPGRADING"));
 
-        Optional<Cluster> cluster = clusterRepository.findByClusterId(1337L);
+        Optional<Cluster> cluster = clusterRepository.findByClusterId(clusterId);
         assertNotNull(cluster.get());
         assertEquals("1.0.1", cluster.get().getVersion());
     }

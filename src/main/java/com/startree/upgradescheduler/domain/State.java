@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 public class State {
     private long clusterId;
     private LocalDateTime updateAt;
-    private String patchUri;
-    private String version;
+    private UpgradePayload upgrade;
     private LocalDateTime nextCallBack;
 }

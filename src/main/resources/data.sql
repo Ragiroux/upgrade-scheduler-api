@@ -21,6 +21,7 @@ CREATE TABLE cluster (
 CREATE TABLE cluster_state (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   current_upgrade_id INT,
-  rollout_strategy VARCHAR(250) NOT NULL
+  rollout_strategy VARCHAR(250) NOT NULL,
+  rollout_parameter VARCHAR(250) NOT NULL
 );
 
