@@ -7,7 +7,7 @@ public class PercentageRollout implements Rollout {
      * based on percentage and clusterId
      * @param condition percentage
      * @param value clusterId
-     * @return true if it should upgrade, false it stays on the same version
+     * @return true to update the cluster to the next version, false it stays on the same version
      */
     @Override
     public boolean canRollout(String condition, String value) {
