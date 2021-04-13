@@ -44,20 +44,21 @@ public class StateController {
 
         if ( cluster.isPresent()) {
             Optional<ClusterState> desiredState = clusterStateService.getDesiredState();
+
             if ( desiredState.isPresent()) {
                 Optional<Upgrade> upgrade = upgradeService.getUpgradeWithId(desiredState.get().getCurrentUpgradeId());
+
                 if (upgrade.isPresent()) {
 
                     Version upgradeVersion = Version.parse(upgrade.get().getVersion());
                     Version clusterVersion = Version.parse(cluster.get().getVersion());
 
-                    //should update managed pinot cluster
                     if (upgradeVersion.compareTo(clusterVersion) > 0) {
-                        log.info("cluster={} has an older version={} than scheduler's version={}", cluster.get().getClusterId(), clusterVersion.toString(), upgradeVersion.toString());
+                        log.info("cluster={} has an older version={} than scheduler's version={}", cluster.get().getClusterId(), clusterVersion, upgradeVersion);
                         Rollout rollout = RolloutStrategy.valueOf(desiredState.get().getRolloutStrategy()).getRollout();
-                        boolean shouldUpgrade = rollout.shouldRollout(desiredState.get().getRolloutParameter(), cluster.get().getId().toString());
-                        if (shouldUpgrade) {
-                            log.info("cluster={} will upgrade to the latest version={}", cluster.get().getClusterId(), upgradeVersion.toString());
+                        boolean canUpgrade = rollout.canRollout(desiredState.get().getRolloutParameter(), cluster.get().getId().toString());
+                        if (canUpgrade) {
+                            log.info("cluster={} will upgrade to the latest version={}", cluster.get().getClusterId(), upgradeVersion);
                             return ResponseEntity.ok(new State(
                                     cluster.get().getClusterId(),
                                     LocalDateTime.now(),

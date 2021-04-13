@@ -19,7 +19,7 @@ Quick architecture overview of the api
 
 ![canary](docs/canary_bird.jpg)
 
-For the canary release, only the rollout by percentage has been implemented. However, this implementation takes two parameters, the percentage and a cluster id.
+For the canary release, only the rollout by percentage has been implemented. This implementation takes two parameters, the percentage and a cluster id.
 
 Here is the algorithm: 
 ````

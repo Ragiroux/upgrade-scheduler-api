@@ -10,7 +10,7 @@ public class PercentageRollout implements Rollout {
      * @return true if it should upgrade, false it stays on the same version
      */
     @Override
-    public boolean shouldRollout(String condition, String value) {
+    public boolean canRollout(String condition, String value) {
         int percentage = Integer.parseInt(condition);
         long clusterId = Long.parseLong(value);
         return (clusterId % 100) < percentage;
